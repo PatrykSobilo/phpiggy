@@ -8,5 +8,6 @@ use App\Services\ValidatorService;
 
 
 return [
-    TemplateEngine::class => fn() => new TemplateEngine(Paths::VIEW), ValidatorService::class => fn() => new ValidatorService()
+    TemplateEngine::class => fn() => new TemplateEngine(Paths::VIEW),
+     ValidatorService::class => fn() => new ValidatorService()
 ];

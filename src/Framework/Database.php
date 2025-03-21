@@ -23,8 +23,8 @@ class Database
         }
     }
 
-    public function query(string $query){
+    public function query(string $query)
+    {
         $this->connection->query($query);
     }
-
 }
