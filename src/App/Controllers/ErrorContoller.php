@@ -2,19 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Controlers;
+namespace App\Controllers;
 
 use Framework\TemplateEngine;
-use App\Config\Paths;
 
-class HomeController
+class ErrorController
 {
   public function __construct(private TemplateEngine $view)
   {
   }
 
-  public function home()
+  public function notFound()
   {
-    echo $this->view->render("index.php");
+    echo $this->view->render("errors/not-found.php");
   }
 }

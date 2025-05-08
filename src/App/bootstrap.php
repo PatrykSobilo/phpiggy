@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -13,10 +13,9 @@ use function App\Config\{registerRoutes, registerMiddleware};
 $dotenv = Dotenv::createImmutable(Paths::ROOT);
 $dotenv->load();
 
-$app = new App(Paths::SOURCE . "app/container-definitions.php");
+$app = new App(Paths::SOURCE . "App/container-definitions.php");
 
 registerRoutes($app);
 registerMiddleware($app);
 
 return $app;
-?>

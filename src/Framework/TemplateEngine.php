@@ -8,14 +8,17 @@ class TemplateEngine
 {
   private array $globalTemplateData = [];
 
-  public function __construct(private string $basePath) {}
+  public function __construct(private string $basePath)
+  {
+  }
 
-  public function render(string $template, array $data = []) {
+  public function render(string $template, array $data = [])
+  {
     extract($data, EXTR_SKIP);
     extract($this->globalTemplateData, EXTR_SKIP);
 
     ob_start();
-    
+
     include $this->resolve($template);
 
     $output = ob_get_contents();
@@ -25,13 +28,13 @@ class TemplateEngine
     return $output;
   }
 
-  public function resolve(string $path) {
-
-
+  public function resolve(string $path)
+  {
     return "{$this->basePath}/{$path}";
   }
 
-  public function addGlobal(string $key, mixed $value) {
+  public function addGlobal(string $key, mixed $value)
+  {
     $this->globalTemplateData[$key] = $value;
   }
 }

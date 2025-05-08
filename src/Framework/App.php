@@ -6,18 +6,17 @@ namespace Framework;
 
 class App
 {
-
   private Router $router;
   private Container $container;
 
-  public function __construct(string $containerDefinitionsPath)
+  public function __construct(string $containerDefinitionsPath = null)
   {
     $this->router = new Router();
     $this->container = new Container();
 
     if ($containerDefinitionsPath) {
-      $containerDefinitionsPath = include $containerDefinitionsPath;
-      $this->container->addDefinitions($containerDefinitionsPath);
+      $containerDefinitions = include $containerDefinitionsPath;
+      $this->container->addDefinitions($containerDefinitions);
     }
   }
 
@@ -43,12 +42,25 @@ class App
     return $this;
   }
 
+  public function delete(string $path, array $controller): App
+  {
+    $this->router->add('DELETE', $path, $controller);
+
+    return $this;
+  }
+
   public function addMiddleware(string $middleware)
   {
     $this->router->addMiddleware($middleware);
   }
 
-  public function add(string $middleware) {
+  public function add(string $middleware)
+  {
     $this->router->addRouteMiddleware($middleware);
+  }
+
+  public function setErrorHandler(array $controller)
+  {
+    $this->router->setErrorHandler($controller);
   }
 }
